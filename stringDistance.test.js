@@ -15,7 +15,8 @@ function stringDistance(first, second) {
 }
 
 function isPalindrome(input) {
-  throw new Error("TBI...");
+  return input == input.split("").reverse().join("");
+
 }
 
 Deno.test("Exercises", async (t) => {
@@ -41,4 +42,47 @@ Deno.test("Exercises", async (t) => {
       assertEquals(isPalindrome("abcabc"), false);
     },
   });
+
+    await t.step({
+    name: "Does the bus serve the line?",
+    fn: () => {
+      // below is the list of lines and buses that serve them
+      // the first element of the array is the line number
+      // the second element is an array of bus numbers that serve the line
+      // if the bus serves the line, return true
+      // if the bus does not serve the line, return false
+      // if the line does not exist, return false
+
+      const linesAndBuses = [
+        [1, [11, 22, 33]],
+        [3, [44, 55, 66]],
+        [5, [11, 55, 77]],
+        [7, [11, 44, 33]],
+        [9, [44, 55, 66]],
+        [17, [11, 66, 77]],
+      ];
+
+      const busServesLine = (line, bus) => {
+        
+      };
+
+      const generalResult = busServesLine(5, 77);
+      const nonExistentLineResult = busServesLine(100, 11);
+      const nonExistentBusResult = busServesLine(1, 100);
+      const nonExistentLineAndBusResult = busServesLine(100, 100);
+
+      assertEquals(generalResult, true);
+      assertEquals(nonExistentLineResult, false);
+      assertEquals(nonExistentBusResult, false);
+      assertEquals(nonExistentLineAndBusResult, false);
+    },
+  });
 });
+
+// function string(name) {
+//   for (let i = 0; i < name.length; i++) {
+//     console.log(name[i]);
+//   }
+//   return name;
+// }
+// string("gfdgfdgfdgf");
