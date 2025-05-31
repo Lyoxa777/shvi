@@ -16,7 +16,6 @@ function stringDistance(first, second) {
 
 function isPalindrome(input) {
   return input == input.split("").reverse().join("");
-
 }
 
 Deno.test("Exercises", async (t) => {
@@ -43,7 +42,7 @@ Deno.test("Exercises", async (t) => {
     },
   });
 
-    await t.step({
+  await t.step({
     name: "Does the bus serve the line?",
     fn: () => {
       // below is the list of lines and buses that serve them
@@ -63,7 +62,9 @@ Deno.test("Exercises", async (t) => {
       ];
 
       const busServesLine = (line, bus) => {
-        
+        const linban = linesAndBuses.find((entry) => entry[0] == line);
+        if (!linban) return false;
+        return linban[1].includes(bus);
       };
 
       const generalResult = busServesLine(5, 77);
@@ -75,6 +76,32 @@ Deno.test("Exercises", async (t) => {
       assertEquals(nonExistentLineResult, false);
       assertEquals(nonExistentBusResult, false);
       assertEquals(nonExistentLineAndBusResult, false);
+    },
+  });
+
+  await t.step({
+    name: "How high?",
+    fn: () => {
+      const buildingsAndHeights = [
+        ["Empire State Building", 443],
+        ["Burj Khalifa", 828],
+        ["Shanghai Tower", 632],
+        ["One World Trade Center", 541],
+        ["Taipei 101", 508],
+      ];
+
+      const howHigh = (building) => {
+        const buildingEntry = buildingsAndHeights.find((entry) =>
+          entry[0] === building
+        );
+        return buildingEntry ? buildingEntry[1] : -1;
+      };
+      const generalResult = howHigh("Burj Khalifa");
+      const nonExistentBuildingResult = howHigh("Hanoi Tower");
+      const emptyBuildingResult = howHigh("");
+      assertEquals(generalResult, 828);
+      assertEquals(nonExistentBuildingResult, -1);
+      assertEquals(emptyBuildingResult, -1);
     },
   });
 });
